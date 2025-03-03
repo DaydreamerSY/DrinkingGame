@@ -16,5 +16,8 @@ func init():
 	else:
 		width = 1080 # Default width for other OS
 		height = 1920 # Default height for other OS
+		
 
 	DisplayServer.window_set_size(Vector2(width, height))
+	print(DisplayServer.window_get_size())
+	Global.SCREEN_SIZE_DEVICE = DisplayServer.window_get_size()
