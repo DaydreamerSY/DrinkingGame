@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c18dlgeyn0n3a"]
+[gd_scene load_steps=10 format=3 uid="uid://c18dlgeyn0n3a"]
 
-[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_dwiig"]
-[ext_resource type="Texture2D" uid="uid://djc5pwa5von5x" path="res://Assets/img_BG.png" id="1_ok7p4"]
-[ext_resource type="Texture2D" uid="uid://bs1nndykhpxgt" path="res://Assets/btn_play.png" id="2_8c531"]
-[ext_resource type="Texture2D" uid="uid://nb3j6vhis5pe" path="res://Assets/icons8-settings-96.png" id="3_v4ho3"]
-[ext_resource type="Material" uid="uid://dbun8t78h348p" path="res://Shader/ButtonGlow.tres" id="4_nvxhx"]
-[ext_resource type="Texture2D" uid="uid://o42pjo2w4ptk" path="res://Assets/img_card.png" id="6_onmin"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_g2unr"]
+[ext_resource type="Texture2D" uid="uid://djc5pwa5von5x" path="res://Assets/img_BG.png" id="2_8y33a"]
+[ext_resource type="Texture2D" uid="uid://bs1nndykhpxgt" path="res://Assets/btn_play.png" id="3_5rdlw"]
+[ext_resource type="Script" path="res://Scripts/UIHandler.gd" id="3_mm1n1"]
+[ext_resource type="Material" uid="uid://dbun8t78h348p" path="res://Shader/ButtonGlow.tres" id="4_en8lp"]
+[ext_resource type="Texture2D" uid="uid://nb3j6vhis5pe" path="res://Assets/icons8-settings-96.png" id="5_cv1at"]
+[ext_resource type="Texture2D" uid="uid://o42pjo2w4ptk" path="res://Assets/img_card.png" id="6_13fcr"]
+[ext_resource type="Script" path="res://Scripts/SceneChanger.gd" id="7_pxxo3"]
 
 [sub_resource type="Environment" id="Environment_bydwb"]
 background_mode = 3
@@ -14,7 +16,7 @@ glow_normalized = true
 glow_hdr_threshold = 1.5
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_dwiig")
+script = ExtResource("1_g2unr")
 
 [node name="BG" type="CanvasLayer" parent="."]
 
@@ -24,9 +26,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ok7p4")
+texture = ExtResource("2_8y33a")
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_mm1n1")
+
+[node name="SceneChanger" type="CanvasLayer" parent="UI"]
+script = ExtResource("7_pxxo3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="UI"]
 environment = SubResource("Environment_bydwb")
@@ -43,11 +49,11 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("2_8c531")
+texture_normal = ExtResource("3_5rdlw")
 
 [node name="BtnOption" type="TextureButton" parent="UI"]
 self_modulate = Color(1, 1, 1, 0.760784)
-material = ExtResource("4_nvxhx")
+material = ExtResource("4_en8lp")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -56,7 +62,7 @@ offset_top = 47.0
 offset_right = -40.0
 offset_bottom = 143.0
 grow_horizontal = 0
-texture_normal = ExtResource("3_v4ho3")
+texture_normal = ExtResource("5_cv1at")
 stretch_mode = 0
 
 [node name="PopupOption" type="TextureRect" parent="UI"]
@@ -73,7 +79,7 @@ offset_right = 432.0
 offset_bottom = 640.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_onmin")
+texture = ExtResource("6_13fcr")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/PopupOption"]
@@ -404,5 +410,5 @@ theme_override_font_sizes/font_size = 51
 text = "Content DLC 1"
 clip_text = true
 
-[connection signal="pressed" from="UI/BtnPlay" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="UI/BtnOption" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="UI/BtnPlay" to="UI" method="_on_btn_play_pressed"]
+[connection signal="pressed" from="UI/BtnOption" to="UI" method="_on_btn_option_pressed"]

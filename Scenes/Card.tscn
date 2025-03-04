@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqglgt0yo585f"]
+
+[ext_resource type="Texture2D" uid="uid://o42pjo2w4ptk" path="res://Assets/img_card.png" id="1_s26lq"]
+[ext_resource type="FontFile" uid="uid://cg53te6wbmn81" path="res://Assets/font/1FTV-ZT-Mota-Regular.otf" id="2_k2yi0"]
+
+[node name="Card" type="Node2D"]
+
+[node name="BG" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -449.5
+offset_top = -794.0
+offset_right = 449.5
+offset_bottom = 794.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_s26lq")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -426.0
+offset_top = -735.0
+offset_right = 423.0
+offset_bottom = 743.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_k2yi0")
+theme_override_font_sizes/font_size = 72
+text = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

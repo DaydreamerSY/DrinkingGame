@@ -13,18 +13,7 @@ func _ready():
 		data = SaveLoader.load_game(Global.SAVE_FILE_PATH_DEFAULT)
 		SaveLoader.save_game(Global.SAVE_FILE_PATH, data)
 		
-	Global.CARD_CONTENT = data
+	Global.CONFIG_GAME["card content"] = data["contents"]
 	
-	print(Global.CARD_CONTENT)
-	pass # Replace with function body.
-
-
-func _on_play_pressed():
-	print("BtnPlay pressed")
-	pass # Replace with function body.
-
-
-func _on_option_pressed():
-	print("BtnOption pressed")
-	popup_option.visible = !popup_option.visible
+	print(Global.CONFIG_GAME["card content"])
 	pass # Replace with function body.

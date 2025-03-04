@@ -1,0 +1,439 @@
+[gd_scene load_steps=10 format=3 uid="uid://d388vx5inxgw8"]
+
+[ext_resource type="Texture2D" uid="uid://djc5pwa5von5x" path="res://Assets/img_BG.png" id="1_g6kyo"]
+[ext_resource type="Script" path="res://Scripts/ActionPhase.gd" id="1_n7t0y"]
+[ext_resource type="Script" path="res://Scripts/UIHandler.gd" id="2_ye7oa"]
+[ext_resource type="Script" path="res://Scripts/SceneChanger.gd" id="3_7w12u"]
+[ext_resource type="Material" uid="uid://dbun8t78h348p" path="res://Shader/ButtonGlow.tres" id="5_7yo4d"]
+[ext_resource type="Texture2D" uid="uid://nb3j6vhis5pe" path="res://Assets/icons8-settings-96.png" id="6_1n734"]
+[ext_resource type="Texture2D" uid="uid://cb5fexbfru5r5" path="res://Assets/btn_back.png" id="6_i7smq"]
+[ext_resource type="Texture2D" uid="uid://o42pjo2w4ptk" path="res://Assets/img_card.png" id="7_xb6qm"]
+
+[sub_resource type="Environment" id="Environment_25ypc"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_hdr_threshold = 1.5
+
+[node name="ActionPhase" type="Node2D"]
+script = ExtResource("1_n7t0y")
+
+[node name="BG" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g6kyo")
+
+[node name="Gameplay" type="CanvasLayer" parent="."]
+
+[node name="CenterScreenPoint" type="Control" parent="Gameplay"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_ye7oa")
+
+[node name="SceneChanger" type="CanvasLayer" parent="UI"]
+script = ExtResource("3_7w12u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="UI"]
+environment = SubResource("Environment_25ypc")
+
+[node name="TopBar" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnOption" type="TextureButton" parent="UI/TopBar"]
+self_modulate = Color(1, 1, 1, 0.760784)
+material = ExtResource("5_7yo4d")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 904.0
+offset_top = 47.0
+offset_right = 1000.0
+offset_bottom = 143.0
+grow_horizontal = 0
+texture_normal = ExtResource("6_1n734")
+stretch_mode = 0
+
+[node name="BtnBack" type="TextureButton" parent="UI/TopBar"]
+self_modulate = Color(1, 1, 1, 0.760784)
+material = ExtResource("5_7yo4d")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 9.0
+offset_top = 47.0
+offset_right = 131.0
+offset_bottom = 144.0
+grow_horizontal = 0
+texture_normal = ExtResource("6_i7smq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PopupOption" type="TextureRect" parent="UI"]
+visible = false
+custom_minimum_size = Vector2(864, 1280)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -640.0
+offset_right = 432.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_xb6qm")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PopupOption"]
+custom_minimum_size = Vector2(864, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxItem" type="VBoxContainer" parent="UI/PopupOption/MarginContainer"]
+custom_minimum_size = Vector2(784, 1200)
+layout_mode = 2
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "OPTION"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="LabelContent2" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="HBoxUpdateContent" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem"]
+layout_mode = 2
+theme_override_constants/separation = 105
+
+[node name="LabelUpdateContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/HBoxUpdateContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Update contents"
+
+[node name="BtnUpdateContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/HBoxUpdateContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Update"
+
+[node name="HBoxSelectContent" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem"]
+layout_mode = 2
+theme_override_constants/separation = 105
+
+[node name="LabelSelectContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/HBoxSelectContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC"
+
+[node name="BtnUpdateContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/HBoxSelectContent"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Update"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/PopupOption/MarginContainer/VBoxItem"]
+custom_minimum_size = Vector2(750, 500)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer"]
+custom_minimum_size = Vector2(630.73, 518)
+layout_mode = 2
+
+[node name="HBoxContent1" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent1"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent1"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent2" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent2"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent2"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent3" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent3"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent3"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent4" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent4"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent4"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent5" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent5"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent5"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent6" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent6"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent6"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent7" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent7"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent7"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent8" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent8"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent8"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent9" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent9"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent9"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent10" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent10"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent10"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent11" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent11"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent11"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent12" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent12"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent12"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent13" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent13"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent13"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent14" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent14"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent14"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[node name="HBoxContent15" type="HBoxContainer" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="BtnSelectContent" type="Button" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent15"]
+custom_minimum_size = Vector2(212.38, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Off"
+
+[node name="LabelContent" type="Label" parent="UI/PopupOption/MarginContainer/VBoxItem/ScrollContainer/VBoxContainer/HBoxContent15"]
+custom_minimum_size = Vector2(542.34, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Content DLC 1"
+clip_text = true
+
+[connection signal="pressed" from="UI/TopBar/BtnOption" to="UI" method="_on_btn_option_pressed"]
+[connection signal="pressed" from="UI/TopBar/BtnBack" to="UI" method="_on_btn_back_pressed"]

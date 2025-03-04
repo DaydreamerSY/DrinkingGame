@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="DrinkingGame-TrustOrDare"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
+Util="*res://Scripts/Util.gd"
 Global="*res://Scripts/Global.gd"
 SaveLoader="*res://Scripts/SaveLoader.gd"
 
