@@ -13,7 +13,7 @@ func _ready():
 		data = SaveLoader.load_game(Global.SAVE_FILE_PATH_DEFAULT)
 		SaveLoader.save_game(Global.SAVE_FILE_PATH, data)
 		
-	Global.CONFIG_GAME["card content"] = data["contents"]
+	Global.CONFIG_GAME[Util.CONFIG_GAME_PARAMS.ALL_CONTENTS] = data["contents"]
 	
-	print(Global.CONFIG_GAME["card content"])
+	print(Global.CONFIG_GAME[Util.CONFIG_GAME_PARAMS.ALL_CONTENTS])
 	pass # Replace with function body.

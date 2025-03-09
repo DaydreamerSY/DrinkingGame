@@ -1,6 +1,11 @@
 class_name DefaultSetup
 
 func init():
+	
+	if not Global.SCREEN_FIRT_START:
+		return
+	Global.SCREEN_FIRT_START = false
+	
 	var width: int
 	var height: int
 	

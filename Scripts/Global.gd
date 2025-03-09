@@ -7,6 +7,7 @@ extends Node
 @export var SAVE_FILE_PATH = "user://game-contents.json" # change to file save and config (save and config is the samee file)
 
 ## Setup screen size
+@export var SCREEN_FIRT_START = true
 @export var SCREEN_SIZE_DEFAULT = Vector2(1080, 1920)
 @export var SCREEN_SIZE_DEVICE = Vector2.ZERO
 
@@ -15,8 +16,10 @@ extends Node
 
 ## Config, save when exit or update content's data and settings
 @export var CONFIG_GAME = {
-	"card content": [],
-	"content enabled": []
+	Util.CONFIG_GAME_PARAMS.ALL_CONTENTS: [],
+	Util.CONFIG_GAME_PARAMS.CONTENTS_AVAILABLE: [],
+	Util.CONFIG_GAME_PARAMS.SESSION_CONTENTS: [],
+	Util.CONFIG_GAME_PARAMS.SESSION_USED_CONTENTS: [],
 }
 
 ## Session data, use for resume, contine game, vfx based on played time,...

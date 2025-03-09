@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqglgt0yo585f"]
+[gd_scene load_steps=5 format=3 uid="uid://cqglgt0yo585f"]
 
+[ext_resource type="Script" path="res://Scripts/Card.gd" id="1_khqxo"]
 [ext_resource type="Texture2D" uid="uid://o42pjo2w4ptk" path="res://Assets/img_card.png" id="1_s26lq"]
 [ext_resource type="FontFile" uid="uid://cg53te6wbmn81" path="res://Assets/font/1FTV-ZT-Mota-Regular.otf" id="2_k2yi0"]
 
-[node name="Card" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrhip"]
+size = Vector2(881, 1576)
+
+[node name="Card" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("1_khqxo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qrhip")
 
 [node name="BG" type="TextureRect" parent="."]
 anchors_preset = 8
@@ -11,22 +24,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -449.5
+offset_left = -449.0
 offset_top = -794.0
-offset_right = 449.5
+offset_right = 450.0
 offset_bottom = 794.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_s26lq")
 
-[node name="Label" type="Label" parent="."]
+[node name="LabelContent" type="Label" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -426.0
-offset_top = -735.0
-offset_right = 423.0
-offset_bottom = 743.0
+offset_left = -449.0
+offset_top = -794.0
+offset_right = 432.0
+offset_bottom = 782.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_k2yi0")
@@ -35,3 +48,15 @@ text = "Lorem ipsum is placeholder text commonly used in the graphic, print, and
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="BtnSelect" type="Button" parent="LabelContent"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="LabelContent/BtnSelect" to="." method="_on_btn_select_button_down"]
+[connection signal="button_up" from="LabelContent/BtnSelect" to="." method="_on_btn_select_button_up"]
